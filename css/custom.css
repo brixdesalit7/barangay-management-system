@@ -1,0 +1,25 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-item a {
+    color: white;
+}
+.nav-item a:hover {
+    background-color: white;
+}
+
+.nav-item i {
+    padding: 15px 10px;
+}
+
+.header h4 {
+    font-family: 'Dancing Script', cursive;
+}
+/* CARD */
+.card-body i {
+    font-size: 70px
+}
+
