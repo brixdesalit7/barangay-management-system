@@ -1,5 +1,5 @@
 BARANGAY MANAGEMENT SYSTEM
-
+LANGUAGES : PHP
 LOGIN PASS
 user : admin
 pass : admin 

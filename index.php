@@ -1,37 +1,47 @@
 <?php
   session_start();
+  // check if the global variable id is set
   if (isset($_SESSION['id'])) {
+    // locate the page to dashboard
       header("Location:dashboard.php");
+      // terminate script
       exit();
   }
   // Include database connectivity
-    
   include_once('conn.php');
-  
+  // check if form is submit
   if (isset($_POST['submit'])) {
 
       $errorMsg = "";
-
+      // collect form data
+      // remove special characters real_escape_string
       $username = $conn->real_escape_string($_POST['username']);
       $password = $conn->real_escape_string(md5($_POST['password']));
-      
-  if (!empty($username) || !empty($password)) {
-        $query  = "SELECT * FROM tbladmin WHERE username = '$username'";
-        $result = $conn->query($query);
-        if($result->num_rows > 0){
-            $row = $result->fetch_assoc();
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['role'] = $row['role'];
-            $_SESSION['name'] = $row['name'];
-            header("Location:dashboard.php");
-            die();                                                
-        } elseif (empty($username) || empty($password))  {
-          $errorMsg = "Username and Password is required";
-        }
-        else{
-          $errorMsg = "Invalid username or password";
-        } 
-    }
+    // check if not empty the form data
+    if (!empty($username) || !empty($password)) {
+    
+          $query  = "SELECT * FROM tbladmin WHERE username = '$username' AND password = '$password' ";
+          // perform query to database
+          $result = $conn->query($query);
+          // check the if the number of row in result set is greater than 0
+          if($result->num_rows > 0 ){
+              // fetch result row as an associative array
+              $row = $result->fetch_assoc();
+              // store the info in $_SESSION var to be used to multiple pages
+              $_SESSION['id'] = $row['id'];
+              $_SESSION['role'] = $row['role'];
+              $_SESSION['name'] = $row['name'];
+              // locate the page to dashboard
+              header("Location:dashboard.php");
+              // terminate script
+              die();                                                
+          } else if (empty($username) || empty($password)) {
+            $errorMsg = "Username and Password is required";
+          }
+          else {
+            $errorMsg = "Invalid username or password";
+          } 
+      }
   }
 
 ?>

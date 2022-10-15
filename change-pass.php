@@ -1,8 +1,8 @@
 <?php
 require_once 'conn.php';
-    
+// start session
 session_start();
-
+// check if session variable is set
 if (!isset($_SESSION['id'])) {
     header("Location:dashboard.php");
     exit();
@@ -98,19 +98,5 @@ if (!isset($_SESSION['id'])) {
 
     </div>
 
-
-    <script>
-        function Export() {
-            let conf = confirm("Procees Record to Excel?")
-            if ( conf = true) {
-                window.open("export-zonelead.php",'_blank');
-            }
-        }
-    </script>  
-
-     
-      
-
-    
 </body>
 </html>

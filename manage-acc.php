@@ -2,10 +2,11 @@
     include('conn.php');
 
     $id= $_GET['id'];
-
-    $name = $_POST['name'];
-    $user = $_POST['username'];
-    $pass = $_POST['pass'];
+    // remove special characters
+    $name = $conn->real_escape_string($_POST['name']);
+    $user = $conn->real_escape_string($_POST['username']);
+    // encrypt password using md5
+    $pass = $conn->real_escape_string(md5($_POST['pass']));
    
 
     $sql = mysqli_query($conn, "UPDATE tbladmin  SET name='$name', username='$user', password='$pass'

@@ -1,11 +1,10 @@
 <?php
 require_once 'conn.php';
-    
+ // start session 
 session_start();
-// CHECK IF ID IS SET
-//IF NOT LOCATE TO DASHBOARD.PHP
+// check if session variable is set
 if (!isset($_SESSION['id'])) {
-    header("Location:dashboard.php");
+    header("Location:index.php");
     exit();
 }
 ?>

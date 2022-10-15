@@ -1,10 +1,10 @@
 <?php
 require_once 'conn.php';
-    
+// start session
 session_start();
-
+// check if session varible is set
 if (!isset($_SESSION['id'])) {
-    header("Location:dashboard.php");
+    header("Location:index.php");
     exit();
 }
 ?>
