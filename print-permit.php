@@ -50,7 +50,6 @@
             font-size: 23px;
         
         }
-      
         dd {
             font-size: 23px;
             margin-left: 180px;
@@ -59,7 +58,6 @@
         dt {
             float: left;
             margin-bottom: 18px;
-         
         }
         .content p {
             text-indent: 50px;
@@ -80,48 +78,45 @@
             margin-left: 100px;
         }
         .footer-2 {
-            align-self: flex-start;
-          
+            align-self: flex-start;  
         }
-     
-      
-	    </style>
+        </style>
 <body>
-            <?php
-                $edit = mysqli_query($conn,"SELECT * FROM tblclearance");
-                $erow = mysqli_fetch_array($edit);
-           ?>
+        <?php
+            $edit = mysqli_query($conn,"SELECT * FROM tblclearance");
+            $erow = mysqli_fetch_array($edit);
+        ?>
         <div id="noscript2" class="d-none">
-                    <div class="header">
-                        <div class="col-1">
-                            <?php
-                                $system_info = mysqli_query($conn,"SELECT * FROM tbl_info");
-                                $show = mysqli_fetch_array($system_info);
-                            ?>
-                            <center><img src="<?php echo($show['images']);?>" alt="Barangay Logo" class="img-fluid rounded-0" width="100px" height="100px"></center>
-                        </div>
-                        <div class="col-2">
-                            <p class="m-0 text-center">Republic of the Philippines</p>
-                            <p class="m-0 text-center mt-1"><?php echo($show['barangayname']); ?></p>
-                            <p class="fw-bold text-center mt-1"><large><?php echo($show['city']); ?></large></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div id="outprint">
-                                    <h1 class="clearance" style="text-align: center;">Barangay Business Permit</h1>
-                            <?php
-                                    $system_info = mysqli_query($conn,"SELECT * FROM tbl_info");
-                                    $show = mysqli_fetch_array($system_info);
-                            ?>
-                            <?php 
-                                $pri = $_GET['print'];
-                                $sql = mysqli_query($conn,"SELECT * FROM tblbusiness_permit WHERE id='$pri'");
+            <div class="header">
+                <div class="col-1">
+                    <?php
+                        $system_info = mysqli_query($conn,"SELECT * FROM tbl_info");
+                        $show = mysqli_fetch_array($system_info);
+                    ?>
+                    <center><img src="<?php echo($show['images']);?>" alt="Barangay Logo" class="img-fluid rounded-0" width="100px" height="100px"></center>
+                </div>
+                <div class="col-2">
+                        <p class="m-0 text-center">Republic of the Philippines</p>
+                        <p class="m-0 text-center mt-1"><?php echo($show['barangayname']); ?></p>
+                        <p class="fw-bold text-center mt-1"><large><?php echo($show['city']); ?></large></p>
+                </div>
+            </div>
+            <hr>
+            <div id="outprint">
+                <h1 class="clearance" style="text-align: center;">Barangay Business Permit</h1>
+            <?php
+                $system_info = mysqli_query($conn,"SELECT * FROM tbl_info");
+                $show = mysqli_fetch_array($system_info);
+                ?>
+            <?php 
+                // get the global variable print
+                // this has a value of id from database
+                $pri = $_GET['print'];
+                // perform query to database
+                $sql = mysqli_query($conn,"SELECT * FROM tblbusiness_permit WHERE id='$pri'");
                                 while($erow = mysqli_fetch_array($sql)){
-                         
-                            ?>
-
-                              <div class="permit-content">
-                                      
+            ?>
+                            <div class="permit-content">  
                                             <div>
                                                 <dt class="col-md-6">Owner Name</dt>
                                                 <dd class="col-md-6">: <?php echo $erow['OwnerName'];?></dd>
@@ -146,13 +141,10 @@
                                                 <dt class="col-md-6">Issued at</dt>
                                                 <dd class="col-md-6">: <?php echo $show['barangayname'];?> <?php echo $show['city'];?></dd>
                                             </div>
-                                          
                                             <?php
                                                 $system_info = mysqli_query($conn,"SELECT * FROM tbl_info");
                                                 $show = mysqli_fetch_array($system_info);
                                             ?>
-                                         
-                                       
                                 </div>
                                 <div class="content">
                                     <p>
@@ -173,23 +165,16 @@
                                                 <h4 style="text-align: center;">Chairman</h4>
                                             </div>
                                 </div>
-                         
                             <?php   
                                 }
                             ?>
                     </div>
         </div>
 
-<script type="text/javascript">
-	function PrintPage() {
-		window.print();
-	}
-	document.loaded = function(){
-		
-	}
+<script>
+    // add event when a html page completly loaded DOMContentLoaded
 	window.addEventListener('DOMContentLoaded', (event) => {
-   		PrintPage()
-		setTimeout(function(){ window.close() },750)
+        window.print();
 	});
 </script>
 

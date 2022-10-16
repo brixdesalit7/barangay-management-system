@@ -102,10 +102,12 @@
                                     $show = mysqli_fetch_array($system_info);
                             ?>
                             <?php 
+                                // get the global variable print
+                                // this has a value of id from database
                                 $pri = $_GET['print'];
+                                //perform query to database
                                 $sql = mysqli_query($conn,"SELECT * FROM tblclearance WHERE id='$pri'");
                                 while($erow = mysqli_fetch_array($sql)){
-                         
                             ?>
                             <div class="content">
                                 <h3 style="text-align: left;margin-left:20px;">TO WHOM IT MAY CONCERN: </h3>
@@ -139,16 +141,11 @@
                     </div>
         </div>
 
-<script type="text/javascript">
-	function PrintPage() {
-		window.print();
-	}
-	document.loaded = function(){
-		
-	}
+<script>
+     // add event when a html page completly loaded DOMContentLoaded
 	window.addEventListener('DOMContentLoaded', (event) => {
-   		PrintPage()
-		setTimeout(function(){ window.close() },750)
+        // call the print method
+        window.print();
 	});
 </script>
 

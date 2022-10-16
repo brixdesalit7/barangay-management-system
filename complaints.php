@@ -127,14 +127,11 @@ if (!isset($_SESSION['id'])) {
             let conf = confirm("Procees Record to Excel?")
             if ( conf = true) {
                 window.open("export-complaints.php",'_blank');
-            } else if(conf == false ) {
-              window.close();
+            } else {
+              conf = '';
             }
         }
     </script>     
-     
-      
 
-    
 </body>
 </html>

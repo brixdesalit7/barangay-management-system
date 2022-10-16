@@ -127,10 +127,10 @@ if (!isset($_SESSION['id'])) {
     <script>
         function Export() {
             let conf = confirm("Procees Record to Excel?")
-            if ( conf = true) {
+            if (conf) {
                 window.open("export-permit.php",'_blank');
-            }  else if(conf == false ) {
-              window.close();
+            }  else  {
+                conf = '';
             }
         }
     </script>     

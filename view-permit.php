@@ -11,7 +11,6 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <?php
-                        
                         $edit = mysqli_query($conn, "SELECT * FROM tblbusiness_permit WHERE id='".$row['id']."'");
                         $erow = mysqli_fetch_array($edit);
                     ?>
