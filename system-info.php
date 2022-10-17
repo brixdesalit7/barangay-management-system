@@ -1,8 +1,13 @@
 <?php
-  include "conn.php";
-
-    if(isset($_POST["submit"]))
-    {
+    require_once 'conn.php';
+    // start session
+    session_start();
+    // check if session variable is set
+    if (!isset($_SESSION['id'])) {
+        header("Location:index.php");
+        exit();
+    }
+    if(isset($_POST["submit"])) {
         // GET THE VALUE OF POST WHICH IS USED TO SEND 
         $brgy = $_POST['brgy']; 
         $city = $_POST['city'];
@@ -36,14 +41,7 @@
     }
 ?>
 <?php
-require_once 'conn.php';
-// start session
-session_start();
-// check if session variable is set
-if (!isset($_SESSION['id'])) {
-    header("Location:index.php");
-    exit();
-}
+
 ?>
 
 <html lang="en">
@@ -66,7 +64,6 @@ if (!isset($_SESSION['id'])) {
 
 <body>
 
-  
     <div class="row">
         <!-- GRID-1 -->
         <?php include 'sidebar.php'; ?>
